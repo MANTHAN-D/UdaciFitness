@@ -1,6 +1,13 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableHighlight } from 'react-native'
+import { View, Platform } from 'react-native'
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+
 import AddEntry from './components/AddEntry'
+
+const store = createStore(reducer)
 
 export default class App extends React.Component {
   handlePress = () => {
@@ -8,38 +15,16 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.btn}
-          onPress={this.handlePress}
-          underlayColor="#d4271b"
+      <Provider store={store}>
+        <View
+          style={{
+            flex: 1,
+            marginTop: Platform.OS === 'ios' ? 15 : 0
+          }}
         >
-          <Text style={styles.btnText}>Touchable Highlight</Text>
-        </TouchableHighlight>
-        <AddEntry />
-      </View>
+          <AddEntry />
+        </View>
+      </Provider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  btn: {
-    backgroundColor: '#E53224',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  btnText: {
-    color: '#fff'
-  }
-})
