@@ -6,13 +6,11 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 
 import AddEntry from './components/AddEntry'
+import History from './components/History'
 
 const store = createStore(reducer)
 
 export default class App extends React.Component {
-  handlePress = () => {
-    alert('Hello')
-  }
   render() {
     return (
       <Provider store={store}>
@@ -22,7 +20,8 @@ export default class App extends React.Component {
             marginTop: Platform.OS === 'ios' ? 15 : 0
           }}
         >
-          <AddEntry />
+          {/* <AddEntry /> */}
+          <History />
         </View>
       </Provider>
     )
