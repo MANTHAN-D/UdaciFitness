@@ -50,7 +50,7 @@ function setMissingDates(dates) {
 }
 
 export function formatCalendarResults(results) {
-  return results === '{}'
+  return results === '{}' || results === null
     ? setDummyData()
     : setMissingDates(JSON.parse(results))
 }
