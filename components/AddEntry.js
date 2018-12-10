@@ -11,7 +11,9 @@ import { Ionicons } from '@expo/vector-icons'
 import {
   getMetricMetaInfo,
   timeToString,
-  getDailyReminderValue
+  getDailyReminderValue,
+  clearLocalNotification,
+  setLocalNotification
 } from '../utils/helpers'
 import { submitEntry, removeEntry } from '../utils/api'
 import { addEntry } from '../actions'
@@ -100,7 +102,7 @@ class AddEntry extends Component {
 
     submitEntry(entry, key)
 
-    // todo: clear notifications
+    clearLocalNotification().then(setLocalNotification)
   }
 
   reset = () => {
