@@ -23,6 +23,8 @@ import UdaciSteppers from '../components/UdaciSteppers'
 import DateHeader from '../components/DateHeader'
 import TextButton from './TextButton'
 
+import { NavigationActions } from 'react-navigation'
+
 const SubmitBtn = ({ onPress }) => {
   return (
     <TouchableOpacity
@@ -94,7 +96,7 @@ class AddEntry extends Component {
       sleep: 0,
       eat: 0
     })
-    // todo: navigate to home
+    this.toHome()
 
     submitEntry(entry, key)
 
@@ -117,9 +119,18 @@ class AddEntry extends Component {
       sleep: 0,
       eat: 0
     })
-    // todo: navigate to home
+
+    this.toHome()
 
     removeEntry(key)
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: 'AddEntry'
+      })
+    )
   }
 
   render() {
